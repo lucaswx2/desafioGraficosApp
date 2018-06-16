@@ -1,0 +1,18 @@
+<app-seleciona-dados class="m-4" (dataEscolhida)="definirGraficos($event)"></app-seleciona-dados>
+<div *ngFor="let dispositivo of dispositivos">
+    <h1>{{obterNome(dispositivo)}}</h1>
+    <div class="row">
+        <div class="col" *ngIf="dispositivo.pressao">
+            <grafico-pressao min="{{obterMin(dispositivo,'pressao')}}" max="{{obterMax(dispositivo,'pressao')}}"
+                [atual]="dispositivo.pressao"> </grafico-pressao>
+        </div>
+        <div class="col" *ngIf="dispositivo.temperatura">
+            <grafico-temperatura min="{{obterMin(dispositivo,'temperatura')}}" max="{{obterMax(dispositivo,'temperatura')}}"
+                [atual]="dispositivo.temperatura"> </grafico-temperatura>
+        </div>
+        <div class="col" *ngIf="dispositivo.armazenamento">
+            <grafico-estoque min="{{obterMin(dispositivo,'armazenamento')}}" label="{{obterNome(dispositivo)}}" max="{{obterMax(dispositivo,'armazenamento')}}"
+                [atual]="dispositivo.armazenamento"> </grafico-estoque>
+        </div>
+    </div>
+</div>

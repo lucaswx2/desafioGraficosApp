@@ -1,0 +1,31 @@
+<div class="row" [@mostraSelects]="selectsEstado">
+  <div class="col-3" *ngIf="anos">
+    <label>Selecione o Ano:</label>
+    <select class="form-control" [(ngModel)]="anoSelecionado" (change)="obterMeses()">
+      <option *ngFor="let ano of anos" [value]="ano">{{ano}}</option>
+    </select>
+  </div>
+  <div class="col-3" *ngIf="meses">
+    <label>Selecione o Mês:</label>
+    <select class="form-control" [(ngModel)]="mesSelecionado" (change)="obterDias()">
+      <option *ngFor="let mes of meses" [value]="mes">{{mes}}</option>
+    </select>
+  </div>
+  <div class="col-3" *ngIf="dias">
+    <label>Selecione o Dia:</label>
+    <select class="form-control" [(ngModel)]="diaSelecionado" (change)="obterSaidas()">
+      <option *ngFor="let dia of dias" [value]="dia">{{dia}}</option>
+    </select>
+  </div>
+  <div class="col-2" *ngIf="saidas">
+    <label>Selecione a Hora:</label>
+    <select class="form-control" [(ngModel)]="saidaSelecionada" >
+      <option *ngFor="let saida of saidas" [ngValue]="saida.dispositivo">{{saida['@attributes'].hora}}</option>
+    </select>
+  </div>
+  <div class="col-1" *ngIf="saidaSelecionada">
+    <label>&nbsp;</label>
+    <br>
+    <button type="button" class="btn btn-outline-success" [disabled]="!saidaSelecionada" (click)="obterDados()">Buscar</button>
+  </div>
+</div>
